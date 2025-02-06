@@ -1,0 +1,27 @@
+name: Build Mod
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - LocalizeSinmai/**
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Build Mod
+        shell: cmd
+        run: |
+          msbuild /t:Restore,Build /p:Configuration=Release /p:RestorePackagesConfig=true /p:ReferencePath="LocalizeSinmai\Libs" /p:WarningLevel=0
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LocalizeSinmai
+          path: bin\Debug\net48\LocalizeSinmai.dll
