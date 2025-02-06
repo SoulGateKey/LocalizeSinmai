@@ -24,4 +24,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: LocalizeSinmai
-          path: bin\Debug\LocalizeSinmai.dll
+          path: LocalizeSinmai\bin\Debug\LocalizeSinmai.dll
